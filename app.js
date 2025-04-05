@@ -4,6 +4,8 @@ const passport = require("passport");
 const session = require("express-session");
 
 //ROUTER IMPORTS
+const indexRouter = require("./routes/indexRouter");
+const usersRouter = require("./routes/usersRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
 //404 route
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
 app.use((req, res) => res.status(404).render("pages/404"));
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
