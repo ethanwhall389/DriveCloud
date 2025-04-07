@@ -1,20 +1,21 @@
 const folderRepo = require("../models/repositories/folderRepository");
 
 const indexPageGet = async (req, res) => {
-  //redirect to root folder
-  res.send("index page");
+  const rootFolder = await folderRepo.findRootFolder();
+  res.redirect(`/folder/${rootFolder.id}`);
 };
 
-const IndexFolderGet = async (req, res) => {
+const indexFolderGet = async (req, res) => {
   const folderId = req.params.folderId;
-  console.log("folderid", folderId);
+
+  await folderRepo.createFolder("Development", 2, folderId);
+  await folderRepo.createFolder("alwaysDebugging", 2, folderId);
+
   const folder = await folderRepo.findById(folderId);
-  console.log("success");
-  console.log(folder);
-  res.send("folder");
+  res.render("./pages/folder", { folder: folder });
 };
 
 module.exports = {
   indexPageGet,
-  IndexFolderGet,
+  indexFolderGet,
 };
