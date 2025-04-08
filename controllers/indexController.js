@@ -8,9 +8,6 @@ const indexPageGet = async (req, res) => {
 const indexFolderGet = async (req, res) => {
   const folderId = req.params.folderId;
 
-  await folderRepo.createFolder("Development", 2, folderId);
-  await folderRepo.createFolder("alwaysDebugging", 2, folderId);
-
   const folder = await folderRepo.findById(folderId);
   res.render("./pages/folder", { folder: folder });
 };

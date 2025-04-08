@@ -6,6 +6,8 @@ const session = require("express-session");
 //ROUTER IMPORTS
 const indexRouter = require("./routes/indexRouter");
 const usersRouter = require("./routes/usersRouter");
+const signupRouter = require("./routes/signupRouter");
+const signinRouter = require("./routes/signinRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 //ROUTES
 //404 route
 app.use("/", indexRouter);
+app.use("/sign-up", signupRouter);
+app.use("/sign-in", signinRouter);
 app.use("/users", usersRouter);
 app.use((req, res) => res.status(404).render("pages/404"));
 

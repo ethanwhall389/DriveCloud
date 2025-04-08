@@ -3,16 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
     <title>Folder</title>
   </head>
   <body>
-    <p><%= folder.name %></p>
-    <ul>
-      <% folder.children.forEach((child) => { %>
-      <li>
-        <p><%=child.name%></p>
-      </li>
-      <% }) %>
-    </ul>
+    <%-include ("../components/nav") %>
+    <div class="main-page-cont">
+      <p><%= folder.name %></p>
+      <% if (locals.folder.children) { %>
+      <ul>
+        <% folder.children.forEach((child) => { %>
+        <li>
+          <a href="/folder/<%=child.id%>"><p><%=child.name%></p></a>
+        </li>
+      </ul>
+      <% }) %> <% } %> <% if (locals.folder.files) { %>
+      <ul>
+        <% folder.files.forEach((file) => { %>
+        <li>
+          <p><%=file.name%></p>
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
   </body>
 </html>
