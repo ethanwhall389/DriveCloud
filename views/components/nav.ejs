@@ -1,6 +1,9 @@
 <div class="nav-page-cont">
   <nav>
-    <h1>Drive Cloud</h1>
+    <div class="logo">
+      <h1>Drive Cloud</h1>
+      <img class="icon" src="/assets/icons/icon-cloud.svg" alt="" />
+    </div>
     <div class="options">
       <button>Upload file</button>
       <form action="/create-folder" method="post">
@@ -9,4 +12,5 @@
       </form>
     </div>
   </nav>
+  <h3><%= folder.name %></h3>
 </div>

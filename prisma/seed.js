@@ -34,6 +34,22 @@ async function main() {
     },
   });
 
+  const picturesFolder = await prisma.folder.create({
+    data: {
+      name: "Pictures",
+      userId: user.id,
+      parentId: rootFolder.id,
+    },
+  });
+
+  const financesFolder = await prisma.folder.create({
+    data: {
+      name: "Finances",
+      userId: user.id,
+      parentId: rootFolder.id,
+    },
+  });
+
   // Create sample files
   await prisma.file.createMany({
     data: [

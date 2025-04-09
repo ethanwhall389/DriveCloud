@@ -1,0 +1,23 @@
+<!-- <a href="/folder/<%=folder.id%>"> -->
+<div class="file-item-cont">
+  <div class="name file-folder-item">
+    <img
+      class="icon icon-<%=file.id%>"
+      src="/assets/icons/icon-folder.svg"
+      alt="folder-icon"
+    />
+    <p><%= file.name %></p>
+  </div>
+  <div class="modified file-folder-item"><p><%= file.modified %></p></div>
+  <div class="size file-folder-item"><p><%= file.fileSize %></p></div>
+</div>
+
+<!-- Update Icon -->
+<script src="/utils/file-icons.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const iconPath = getIcon("<%= file.iconType %>");
+    document.querySelector(".icon-<%=file.id%>").src = iconPath;
+  });
+</script>
+<!-- </a> -->

@@ -7,22 +7,22 @@
     <title>Folder</title>
   </head>
   <body>
-    <%-include ("../components/nav") %>
+    <%-include ("../components/nav", {folder: folder}) %>
     <div class="main-page-cont">
-      <p><%= folder.name %></p>
+      <div class="folder-header">
+        <p>Name</p>
+        <p>Modified</p>
+        <p>Size</p>
+      </div>
       <% if (locals.folder.children) { %>
       <ul>
         <% folder.children.forEach((child) => { %>
-        <li>
-          <a href="/folder/<%=child.id%>"><p><%=child.name%></p></a>
-        </li>
+        <li><%-include ("../components/folder-item", {folder: child})%></li>
       </ul>
       <% }) %> <% } %> <% if (locals.folder.files) { %>
       <ul>
         <% folder.files.forEach((file) => { %>
-        <li>
-          <p><%=file.name%></p>
-        </li>
+        <li><%-include ("../components/file-item", {file: file})%></li>
         <% }) %>
       </ul>
       <% } %>
