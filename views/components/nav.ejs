@@ -6,8 +6,8 @@
     </div>
     <div class="options">
       <button>Upload file</button>
-      <form action="/create-folder" method="post">
-        <input type="text" name="newFolder" id="newFolder" />
+      <form action="/folder/<%= folder.id %>" method="post">
+        <input type="text" name="name" id="name" />
         <button type="submit">Create folder</button>
       </form>
     </div>
