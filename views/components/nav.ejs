@@ -5,7 +5,14 @@
       <img class="icon" src="/assets/icons/icon-cloud.svg" alt="" />
     </div>
     <div class="options">
-      <button>Upload file</button>
+      <form
+        action="/folder/<%= folder.id %>/file"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <input type="file" name="file" id="file" />
+        <button type="submit">Upload file</button>
+      </form>
       <form action="/folder/<%= folder.id %>" method="post">
         <input type="text" name="name" id="name" />
         <button type="submit">Create folder</button>

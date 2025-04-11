@@ -1,6 +1,8 @@
 const { format } = require("date-fns");
 const formatSize = require("../utils/formatSize");
 const folderServices = require("../services/folderServices");
+const fs = require("fs");
+const uploadFile = require("../utils/uploadFile");
 
 const folderRepo = require("../models/repositories/folderRepository");
 
@@ -37,8 +39,31 @@ const childFolderPost = async (req, res) => {
   res.redirect(`/folder/${parentFolderId}`);
 };
 
+const indexFileUpload = async (req, res) => {
+  const { folderId } = req.params;
+  if (!req.file) {
+    return res.status(400).send("No file uploaded");
+  }
+  console.log(req.file);
+  const { buffer, originalname, mimetype } = req.file;
+  const path = `${folderId}/${originalname}`;
+  try {
+    const uploadResult = await uploadFile("all-files", path, buffer, mimetype);
+
+    res.status(200).json({
+      message: "File uploaded successfully",
+      path: uploadResult.path,
+      //publicUrl: getPublicUrl("my-bucket", filePath),
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error uploading file");
+  }
+};
+
 module.exports = {
   indexPageGet,
   indexFolderGet,
   childFolderPost,
+  indexFileUpload,
 };

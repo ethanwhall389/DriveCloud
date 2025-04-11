@@ -8,6 +8,7 @@ const indexRouter = require("./routes/indexRouter");
 const usersRouter = require("./routes/usersRouter");
 const signupRouter = require("./routes/signupRouter");
 const signinRouter = require("./routes/signinRouter");
+const { json } = require("stream/consumers");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,8 @@ app.set("view engine", "ejs");
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
+
+app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
